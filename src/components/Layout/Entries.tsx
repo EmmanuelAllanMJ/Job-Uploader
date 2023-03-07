@@ -39,7 +39,7 @@ function Entries() {
     },
   ];
   return (
-    <div className=" grid grid-cols-[50%_50%] grid-rows-[auto] gap-x-5 gap-y-2.5 bg-[#D8D8D8] py-5 px-16 ">
+    <div className=" grid md:grid-cols-[50%_50%] grid-cols-[100%] grid-rows-[auto] gap-x-5 gap-y-2.5 bg-[#D8D8D8] md:py-5 md:px-12 py-2 px-5">
       {data.map((job) => {
         return <Entry job={job} />;
       })}

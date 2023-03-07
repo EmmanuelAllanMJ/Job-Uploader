@@ -15,7 +15,9 @@ export default function Modal() {
 
   return (
     <>
-      <Button onClick={() => setShowModal(true)}>New Job</Button>
+      <div className="flex justify-center items-center p-8">
+        <Button onClick={() => setShowModal(true)}>New Job</Button>
+      </div>
       {showModal && !next ? (
         <>
           <Card>

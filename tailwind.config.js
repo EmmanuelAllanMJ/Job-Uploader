@@ -6,10 +6,7 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     fontFamily: {
-      sans: [
-        { fontFeatureSettings: '"Poppins", "ss01"' },
-        "Inter var, sans-serif",
-      ],
+      sans: [{ fontFeatureSettings: "Poppins" }, "Inter var, sans-serif"],
     },
     colors: {
       transparent: "transparent",

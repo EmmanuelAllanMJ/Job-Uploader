@@ -1,13 +1,38 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@00&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap");
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer base {
+  * {
+    font-family: "Poppins";
+    @apply text-dark;
+  }
+  h2 {
+    @apply text-xl text-black font-[bold];
+  }
+  h3 {
+    @apply font-[medium] text-base leading-6;
+  }
+  h4 {
+    @apply text-sm text-black font-[bold] inline;
+  }
+  input {
+    @apply w-full  box-border border rounded text-sm mx-0 my-2 px-5 py-3 border-solid border-[#ccc];
+  }
+  input::placeholder {
+    @apply text-grey text-sm  font-normal;
+    font-family: "Poppins";
+  }
+  input[type="radio"] {
+    /* @apply hidden hidden; */
+  }
+  input[type="radio"]:checked ~ label {
+    @apply font-[bold];
+  }
+  input[type="radio"]:not(:checked) ~ label {
+    @apply font-[normal];
+  }
 }

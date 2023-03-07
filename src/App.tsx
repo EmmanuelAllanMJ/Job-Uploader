@@ -1,25 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Button from "./components/UI/button";
+import Input from "./components/UI/input";
+import Label from "./components/UI/label";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Button>New Job</Button>
+      <h2>Create a job</h2>
+      <h3>Step 3</h3>
+      {/* <Input placeholder={"eg UX UI Designer"} /> */}
+      <input type="text" placeholder="eg UX UI Designer" />
+      <input type="radio" className="" />
+    </>
   );
 }
 

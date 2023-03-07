@@ -22,6 +22,10 @@
   input {
     @apply w-full  box-border border rounded text-sm mx-0 my-2 px-5 py-3 border-solid border-[#ccc];
   }
+  img {
+    @apply w-12 h-12;
+  }
+
   input::placeholder {
     @apply text-grey text-sm;
     font-family: "Poppins";

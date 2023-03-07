@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "../UI/button";
 import Label from "../UI/label";
-import Card from "./Card";
+import Card from "./modalCard";
 import Wrapper from "./Wrapper";
 
 export default function Modal() {

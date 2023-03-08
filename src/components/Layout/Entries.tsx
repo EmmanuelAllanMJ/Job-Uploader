@@ -1,10 +1,5 @@
 import Entry from "./Entry";
-import Card from "./Entry";
-import Wrapper from "./Wrapper";
 
-type SelectProps = {
-  children: React.ReactNode;
-};
 function Entries() {
   var data = [
     {

@@ -25,6 +25,9 @@
   img {
     @apply w-12 h-12;
   }
+  p {
+    @apply text-grey text-sm  whitespace-nowrap;
+  }
 
   input::placeholder {
     @apply text-grey text-sm;

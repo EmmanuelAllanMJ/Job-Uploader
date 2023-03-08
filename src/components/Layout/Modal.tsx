@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Button from "../UI/button";
 import Label from "../UI/label";
 import Card from "./modalCard";
@@ -66,8 +66,17 @@ export default function Modal() {
           <Label>Total Employee</Label>
           <input placeholder="ex: Google" />
           <Label>Apply type</Label>
-          <input type="radio" />
-          <input type="radio" />
+          <div className="flex justify-start gap-4 ">
+            <Wrapper className="gap-1">
+              <input type="radio" name="A" value="a" id="radio1" />
+
+              <p>Quick Apply</p>
+            </Wrapper>
+            <Wrapper className="gap-1">
+              <input type="radio" name="A" value="b" id="radio2" />
+              <p>External Apply</p>
+            </Wrapper>
+          </div>
 
           <div className="flex items-center justify-end pt-24   rounded-b">
             <Button onClick={saveModal}>Save</Button>

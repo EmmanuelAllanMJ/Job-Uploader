@@ -18,7 +18,7 @@ type SelectProps = {
   applyType?: string | null;
   salaryMin?: number;
   salaryMax?: number;
-  quick?: boolean | null;
+  quick?: string | null;
   id: string;
 };
 
@@ -92,8 +92,10 @@ function Modal() {
     setShowModal(false);
     setNext(false);
     createPost();
+    setNewPost(newPostObj);
   };
   function createPost() {
+    console.log(newPost);
     axios
       .post(`${baseURL}/tasks`, newPost)
       .then((response) => {
@@ -273,11 +275,13 @@ function Modal() {
             <Wrapper className="gap-1">
               <input
                 type="radio"
-                value="quick"
                 name="apply"
+                value="quick"
+                key="quick"
                 onChange={(e) =>
                   setNewPost((post) => {
-                    return { ...post, applyType: e.target.value };
+                    console.log(post, e.target.value);
+                    return { ...post, quick: e.target.value };
                   })
                 }
               />
@@ -289,9 +293,11 @@ function Modal() {
                 type="radio"
                 name="apply"
                 value="external"
+                key="external"
                 onChange={(e) =>
                   setNewPost((post) => {
-                    return { ...post, applyType: e.target.value };
+                    console.log(post, e.target.value);
+                    return { ...post, quick: e.target.value };
                   })
                 }
               />

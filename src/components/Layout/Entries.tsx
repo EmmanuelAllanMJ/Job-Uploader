@@ -16,7 +16,7 @@ type SelectProps = {
   applyType: boolean;
   salaryMin: number;
   salaryMax: number;
-  quick: boolean;
+  quick: string | null;
   id: string;
 };
 

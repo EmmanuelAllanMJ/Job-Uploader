@@ -14,7 +14,7 @@ type SelectProps = {
     applyType: boolean;
     salaryMin: number;
     salaryMax: number;
-    quick: boolean;
+    quick: string | null;
     id: string;
   };
 };
@@ -41,10 +41,14 @@ function Entry({ job }: SelectProps) {
             INR(&#8377;){job.salaryMin} - {job.salaryMax}{" "}
           </h4>
           <h4 className="pb-6 block">51-200 employees</h4>
-          <div className="flex gap-2">
-            <Button>Apply</Button>
-            <BorderBtn>External Apply</BorderBtn>
-          </div>
+          {job.quick === "quick" && <Button>Apply</Button>}
+          {job.quick === "external" && <BorderBtn>External Apply</BorderBtn>}
+          {job.quick === null && (
+            <div className="flex gap-2">
+              <Button>Apply</Button>
+              <BorderBtn>External Apply</BorderBtn>
+            </div>
+          )}
         </div>
       </div>
     </div>

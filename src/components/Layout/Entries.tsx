@@ -21,39 +21,6 @@ type SelectProps = {
 };
 
 function Entries() {
-  let data: SelectProps[] = [
-    {
-      title: "UX UI Designer",
-      companyName: "Great View",
-      industry: "Information Technology",
-      location: "Chennai, TamilNadu, India",
-      remoteType: "In-office",
-      expMin: 1,
-      expMax: 2,
-      totalEmp: 51 - 200,
-      applyType: false,
-      salaryMin: 30000,
-      salaryMax: 50000,
-      quick: false,
-      id: "1",
-    },
-    {
-      title: "UX UI Designer",
-      companyName: "Great View",
-      industry: "Information Technology",
-      location: "Chennai, TamilNadu, India",
-      remoteType: "In-office",
-      expMin: 1,
-      expMax: 2,
-      totalEmp: 51 - 200,
-      applyType: false,
-      salaryMin: 30000,
-      salaryMax: 50000,
-      quick: true,
-      id: "1",
-    },
-  ];
-
   const [jobs, setJobs] = useState<SelectProps[] | null | void>([]);
   console.log("base", baseURL);
   console.log("base1", process.env.REACT_APP_BASE_URL);

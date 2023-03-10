@@ -26,7 +26,6 @@ type ErrorProps = {
   title: boolean;
   companyName: boolean;
   industry: boolean;
-  onActive: boolean;
 };
 
 var newPostObj = {
@@ -51,30 +50,38 @@ function Modal() {
   const [nextError, setNextError] = useState(false);
   const [newPost, setNewPost] = useState<SelectProps>(newPostObj);
 
-  console.log(newPost);
+  // console.log(newPost);
   const [error, setError] = useState<ErrorProps>({
     title: false,
     companyName: false,
     industry: false,
-    onActive: true,
   });
-
+  const [result, setResult] = useState(false);
+  // let result = true;
+  let compulsory = ["title", "companyName", "industry"];
   const nextModal = () => {
-    var result = true;
+    console.log(
+      "error above for",
+      newPost[compulsory[0] as keyof SelectProps] === ""
+    );
 
-    console.log("error", error);
-    for (var i in error) {
-      console.log("error", error[i as keyof ErrorProps]);
-      if (error[i as keyof ErrorProps] === false) {
-        result = true;
-      } else {
-        result = false;
+    for (var i = 0; i < 2; i++) {
+      console.log(
+        "newPost",
+        newPost[compulsory[i] as keyof ErrorProps],
+        compulsory[i]
+      );
+      if (newPost[compulsory[i] as keyof SelectProps] === "") {
+        setResult(false);
+        // return;
         break;
+      } else {
+        setResult(true);
       }
     }
-    console.log("calling");
+    // console.log("result outside", result);
     if (result) {
-      console.log("calling res");
+      // console.log("calling res");
       setNextError(false);
       setNext(true);
     } else {
@@ -97,9 +104,10 @@ function Modal() {
         console.log(err);
       });
   }
+
   function onErrorHandler(e: { target: { value: any } }, field: string) {
     const value = e.target.value;
-    error.onActive = false;
+    // error.onTitle = false;
 
     if (value === "") {
       setError((err) => {
@@ -109,7 +117,7 @@ function Modal() {
         };
       });
     } else {
-      error.onActive = false;
+      // error.onTitle = false;
       setError((err) => {
         return {
           ...err,

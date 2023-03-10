@@ -22,6 +22,12 @@ type SelectProps = {
   id: string;
 };
 
+type ErrorProps = {
+  title: boolean;
+  companyName: boolean;
+  industry: boolean;
+};
+
 var newPostObj = {
   title: "",
   companyName: "",
@@ -41,10 +47,14 @@ var newPostObj = {
 function Modal() {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [next, setNext] = useState<boolean>(false);
-  const [post, setPost] = useState<SelectProps | null | void>(null);
   const [newPost, setNewPost] = useState<SelectProps>(newPostObj);
-  console.log(newPost);
-  // const [onActive, setOnActive] = useState({})
+
+  // const [title, setTitle] = useState(false);
+  const [error, setError] = useState<ErrorProps>({
+    title: false,
+    companyName: false,
+    industry: false,
+  });
 
   const saveModal = () => {
     setShowModal(false);
@@ -56,11 +66,32 @@ function Modal() {
       .post(`${baseURL}/tasks`, newPost)
       .then((response) => {
         console.log(response);
-        // setPost(response.data);
+        // setPost();
       })
       .catch((err) => {
         console.log(err);
       });
+  }
+  function onChangeTitle(e: { target: { value: any } }, field: string) {
+    const value = e.target.value;
+    if (value === "") {
+      setError((err) => {
+        return {
+          ...err,
+          [field]: true,
+        };
+      });
+    } else {
+      setError((err) => {
+        return {
+          ...err,
+          [field]: false,
+        };
+      });
+    }
+    setNewPost((post) => {
+      return { ...post, title: e.target.value };
+    });
   }
 
   return (
@@ -76,16 +107,20 @@ function Modal() {
               <h3>Step 1</h3>
             </Wrapper>
             <Label mandatory={true}>Job Title</Label>
+            {error.title && (
+              <p className="text-alert">This field is required</p>
+            )}
             <input
+              className={error.title ? "border-2 border-alert " : ""}
               placeholder="ex: UI UX Designer"
               value={newPost.title}
-              onChange={(e) =>
-                setNewPost((post) => {
-                  return { ...post, title: e.target.value };
-                })
-              }
+              onChange={(event) => onChangeTitle(event, "title")}
+              onBlur={(event) => onChangeTitle(event, "title")}
             />
             <Label mandatory={true}>Company Name</Label>
+            {error.companyName && (
+              <p className="text-alert">This field is required</p>
+            )}
             <input
               placeholder="ex: Google"
               value={newPost.companyName}
@@ -96,6 +131,9 @@ function Modal() {
               }
             />
             <Label mandatory={true}>Industry</Label>
+            {error.companyName && (
+              <p className="text-alert">This field is required</p>
+            )}
             <input
               placeholder="ex: Information Technology"
               value={newPost.industry}

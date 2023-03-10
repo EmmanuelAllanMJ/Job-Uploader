@@ -1,29 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Entry from "./Entry";
+import { SelectProps } from "../../assets/Types";
 
 const baseURL = process.env.REACT_APP_BASE_URL;
 
-type SelectProps = {
-  title: string;
-  companyName: string;
-  industry: string;
-  location: string;
-  remoteType: string;
-  expMin: number;
-  expMax: number;
-  totalEmp: number;
-  applyType: boolean;
-  salaryMin: number;
-  salaryMax: number;
-  quick: string | null;
-  id: string;
-};
-
 function Entries() {
   const [jobs, setJobs] = useState<SelectProps[] | null | void>([]);
-  console.log("base", baseURL);
-  console.log("base1", process.env.REACT_APP_BASE_URL);
 
   useEffect(() => {
     axios

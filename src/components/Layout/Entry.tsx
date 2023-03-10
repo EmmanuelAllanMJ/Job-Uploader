@@ -1,23 +1,6 @@
 import BorderBtn from "../UI/borderBtn";
 import Button from "../UI/button";
-
-type SelectProps = {
-  job: {
-    title: string;
-    companyName: string;
-    industry: string;
-    location: string;
-    remoteType: string;
-    expMin: number;
-    expMax: number;
-    totalEmp: number;
-    applyType: boolean;
-    salaryMin: number;
-    salaryMax: number;
-    quick: string | null;
-    id: string;
-  };
-};
+import { SelectPropsEntry as SelectProps } from "../../assets/Types";
 
 function Entry({ job }: SelectProps) {
   return (

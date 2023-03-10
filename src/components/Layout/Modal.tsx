@@ -4,29 +4,9 @@ import Label from "../UI/label";
 import Card from "./modalCard";
 import Wrapper from "./Wrapper";
 import axios from "axios";
+import { SelectProps, ErrorProps } from "../../assets/Types";
 
 const baseURL = process.env.REACT_APP_BASE_URL;
-type SelectProps = {
-  title: string;
-  companyName: string;
-  industry: string;
-  location?: string;
-  remoteType?: string;
-  expMin?: number;
-  expMax?: number;
-  totalEmp?: string;
-  applyType?: string | null;
-  salaryMin?: number;
-  salaryMax?: number;
-  quick?: string | null;
-  id: string;
-};
-
-type ErrorProps = {
-  title: boolean;
-  companyName: boolean;
-  industry: boolean;
-};
 
 var newPostObj = {
   title: "",
@@ -37,7 +17,6 @@ var newPostObj = {
   expMin: -1,
   expMax: -1,
   totalEmp: "",
-  applyType: null,
   salaryMin: -1,
   salaryMax: -1,
   quick: null,
@@ -60,17 +39,7 @@ function Modal() {
   // let result = true;
   let compulsory = ["title", "companyName", "industry"];
   const nextModal = () => {
-    console.log(
-      "error above for",
-      newPost[compulsory[0] as keyof SelectProps] === ""
-    );
-
     for (var i = 0; i < 2; i++) {
-      console.log(
-        "newPost",
-        newPost[compulsory[i] as keyof ErrorProps],
-        compulsory[i]
-      );
       if (newPost[compulsory[i] as keyof SelectProps] === "") {
         setResult(false);
         // return;
@@ -95,15 +64,15 @@ function Modal() {
     setNewPost(newPostObj);
   };
   function createPost() {
-    console.log(newPost);
+    // console.log(newPost);
     axios
       .post(`${baseURL}/tasks`, newPost)
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         // setPost();
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   }
 
@@ -280,7 +249,6 @@ function Modal() {
                 key="quick"
                 onChange={(e) =>
                   setNewPost((post) => {
-                    console.log(post, e.target.value);
                     return { ...post, quick: e.target.value };
                   })
                 }
@@ -296,7 +264,6 @@ function Modal() {
                 key="external"
                 onChange={(e) =>
                   setNewPost((post) => {
-                    console.log(post, e.target.value);
                     return { ...post, quick: e.target.value };
                   })
                 }

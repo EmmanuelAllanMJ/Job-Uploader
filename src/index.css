@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@00&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap");
 
@@ -20,7 +20,7 @@
     @apply text-sm text-black  inline;
   }
   input {
-    @apply w-full  box-border border rounded text-sm mx-0 my-2 px-5 py-3 border-solid border-[#ccc];
+    @apply w-full placeholder:font-normal box-border border rounded text-sm mx-0 my-2 px-5 py-3 border-solid border-[#ccc];
   }
   img {
     @apply w-12 h-12;
@@ -29,17 +29,8 @@
     @apply text-grey text-sm  whitespace-nowrap;
   }
 
-  input::placeholder {
+  /* input::placeholder {
     @apply text-grey text-sm;
     font-family: "Poppins";
-  }
-  input[type="radio"] {
-    /* @apply hidden hidden; */
-  }
-  input[type="radio"]:checked ~ label {
-    @apply font-[bold];
-  }
-  input[type="radio"]:not(:checked) ~ label {
-    @apply font-[normal];
-  }
+  } */
 }

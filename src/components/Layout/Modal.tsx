@@ -26,6 +26,7 @@ type ErrorProps = {
   title: boolean;
   companyName: boolean;
   industry: boolean;
+  onActive: boolean;
 };
 
 var newPostObj = {
@@ -47,15 +48,33 @@ var newPostObj = {
 function Modal() {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [next, setNext] = useState<boolean>(false);
+  const [nextError, setNextError] = useState(false);
   const [newPost, setNewPost] = useState<SelectProps>(newPostObj);
 
-  // const [title, setTitle] = useState(false);
+  console.log(newPostObj);
   const [error, setError] = useState<ErrorProps>({
     title: false,
     companyName: false,
     industry: false,
+    onActive: true,
   });
 
+  const nextModal = () => {
+    var result = true;
+
+    for (var i in error) {
+      if (error[i as keyof ErrorProps] === true) {
+        result = false;
+        break;
+      }
+    }
+    if (result) {
+      setNextError(false);
+      setNext(false);
+    } else {
+      setNextError(true);
+    }
+  };
   const saveModal = () => {
     setShowModal(false);
     setNext(false);
@@ -74,6 +93,7 @@ function Modal() {
   }
   function onErrorHandler(e: { target: { value: any } }, field: string) {
     const value = e.target.value;
+    error.onActive = false;
     if (value === "") {
       setError((err) => {
         return {
@@ -81,6 +101,7 @@ function Modal() {
           [field]: true,
         };
       });
+      console.log("first");
     } else {
       setError((err) => {
         return {
@@ -165,8 +186,11 @@ function Modal() {
                 />
               </div>
             </div>
+            {nextError && (
+              <p className="text-alert">Full all the required fields</p>
+            )}
             <div className="flex items-center justify-end pt-24   rounded-b">
-              <Button onClick={() => setNext(true)}>Next</Button>
+              <Button onClick={() => nextModal()}>Next</Button>
             </div>
           </Card>
         </>

@@ -72,7 +72,7 @@ function Modal() {
         console.log(err);
       });
   }
-  function onChangeTitle(e: { target: { value: any } }, field: string) {
+  function onErrorHandler(e: { target: { value: any } }, field: string) {
     const value = e.target.value;
     if (value === "") {
       setError((err) => {
@@ -114,34 +114,30 @@ function Modal() {
               className={error.title ? "border-2 border-alert " : ""}
               placeholder="ex: UI UX Designer"
               value={newPost.title}
-              onChange={(event) => onChangeTitle(event, "title")}
-              onBlur={(event) => onChangeTitle(event, "title")}
+              onChange={(event) => onErrorHandler(event, "title")}
+              onBlur={(event) => onErrorHandler(event, "title")}
             />
             <Label mandatory={true}>Company Name</Label>
             {error.companyName && (
               <p className="text-alert">This field is required</p>
             )}
             <input
+              className={error.companyName ? "border-2 border-alert " : ""}
               placeholder="ex: Google"
               value={newPost.companyName}
-              onChange={(e) =>
-                setNewPost((post) => {
-                  return { ...post, companyName: e.target.value };
-                })
-              }
+              onChange={(event) => onErrorHandler(event, "companyName")}
+              onBlur={(event) => onErrorHandler(event, "companyName")}
             />
             <Label mandatory={true}>Industry</Label>
-            {error.companyName && (
+            {error.industry && (
               <p className="text-alert">This field is required</p>
             )}
             <input
+              className={error.industry ? "border-2 border-alert " : ""}
               placeholder="ex: Information Technology"
               value={newPost.industry}
-              onChange={(e) =>
-                setNewPost((post) => {
-                  return { ...post, industry: e.target.value };
-                })
-              }
+              onChange={(event) => onErrorHandler(event, "industry")}
+              onBlur={(event) => onErrorHandler(event, "industry")}
             />
             <div className="flex justify-between items-center gap-5">
               <div>

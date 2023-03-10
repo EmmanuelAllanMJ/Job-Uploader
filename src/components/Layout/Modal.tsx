@@ -51,7 +51,7 @@ function Modal() {
   const [nextError, setNextError] = useState(false);
   const [newPost, setNewPost] = useState<SelectProps>(newPostObj);
 
-  console.log(newPostObj);
+  console.log(newPost);
   const [error, setError] = useState<ErrorProps>({
     title: false,
     companyName: false,
@@ -62,15 +62,21 @@ function Modal() {
   const nextModal = () => {
     var result = true;
 
+    console.log("error", error);
     for (var i in error) {
-      if (error[i as keyof ErrorProps] === true) {
+      console.log("error", error[i as keyof ErrorProps]);
+      if (error[i as keyof ErrorProps] === false) {
+        result = true;
+      } else {
         result = false;
         break;
       }
     }
+    console.log("calling");
     if (result) {
+      console.log("calling res");
       setNextError(false);
-      setNext(false);
+      setNext(true);
     } else {
       setNextError(true);
     }
@@ -94,6 +100,7 @@ function Modal() {
   function onErrorHandler(e: { target: { value: any } }, field: string) {
     const value = e.target.value;
     error.onActive = false;
+
     if (value === "") {
       setError((err) => {
         return {
@@ -101,8 +108,8 @@ function Modal() {
           [field]: true,
         };
       });
-      console.log("first");
     } else {
+      error.onActive = false;
       setError((err) => {
         return {
           ...err,
@@ -111,7 +118,7 @@ function Modal() {
       });
     }
     setNewPost((post) => {
-      return { ...post, title: e.target.value };
+      return { ...post, [field]: e.target.value };
     });
   }
 

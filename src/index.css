@@ -17,7 +17,7 @@
     @apply text-base leading-6;
   }
   h4 {
-    @apply text-sm text-black font-bold  inline;
+    @apply text-sm text-black font-medium  inline;
   }
   input {
     @apply w-full placeholder:font-normal box-border border rounded text-sm mx-0 my-2 px-5 py-3 border-solid border-[#ccc];

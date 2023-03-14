@@ -34,3 +34,28 @@
     font-family: "Poppins";
   } */
 }
+
+@layer components {
+  .spinner {
+    @apply w-16 h-16 relative animate-[rotate_2s_linear_infinite] mx-auto my-[100px] before:border before:animate-[spin-diagonal_2s_linear_infinite] before:border-solid before:border-[#ddd] before:border-[#333] after:border after:animate-[spin-vertical_2s_linear_infinite] after:border-l-[#333] after:border-r-transparent after:border-y-transparent after:border-solid after:border-[#ddd];
+  }
+  .spinner:before,
+  .spinner:after {
+    @apply content-[""] absolute w-full h-full rounded-[50%] left-0 top-0;
+  }
+  @keyframes rotate {
+    to {
+      @apply rotate-[360deg];
+    }
+  }
+  @keyframes spin-diagonal {
+    to {
+      @apply rotate-[135deg];
+    }
+  }
+  @keyframes spin-vertical {
+    to {
+      @apply rotate-90;
+    }
+  }
+}

@@ -36,7 +36,4 @@ export type ErrorProps = {
   industry: boolean;
 };
 
-export type ErrorOnSaveProps = {
-  exp: boolean;
-  sal: boolean;
-};
+

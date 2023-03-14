@@ -4,7 +4,7 @@ import Label from "../UI/label";
 import Card from "./modalCard";
 import Wrapper from "./Wrapper";
 import axios from "axios";
-import { SelectProps, ErrorProps } from "../../assets/Types";
+import { SelectProps, ErrorProps, ErrorOnSaveProps } from "../../assets/Types";
 
 const baseURL = process.env.REACT_APP_BASE_URL;
 
@@ -35,6 +35,11 @@ function Modal() {
     companyName: false,
     industry: false,
   });
+  const [errorOnSave, setErrorOnSave] = useState<ErrorOnSaveProps>({
+    exp: false,
+    sal: false,
+  });
+
   const [result, setResult] = useState(false);
   // let result = true;
   let compulsory = ["title", "companyName", "industry"];
@@ -99,6 +104,26 @@ function Modal() {
     setNewPost((post) => {
       return { ...post, [field]: e.target.value };
     });
+  }
+
+  function checkSize(field: string) {
+    if (field === "exp") var { expMin: min, expMax: max } = newPost;
+    else if (field === "sal") var { salaryMin: min, salaryMax: max } = newPost;
+    else var { min, max } = { min: 0, max: 0 };
+    console.log(min, max);
+    if (min !== -1 && max !== -1) {
+      if (min > max) {
+        setErrorOnSave((err) => {
+          console.log("if", err);
+          return { ...err, [field]: true };
+        });
+      } else {
+        setErrorOnSave((err) => {
+          console.log("else", err);
+          return { ...err, [field]: false };
+        });
+      }
+    }
   }
 
   return (
@@ -188,42 +213,57 @@ function Modal() {
             <h3>Step 2</h3>
           </Wrapper>
           <Label>Experience</Label>
+          {errorOnSave.exp && (
+            <p className="text-alert">Give appropriate details</p>
+          )}
           <Wrapper className={"gap-5"}>
             <input
+              className={errorOnSave.exp ? "border-2 border-alert " : ""}
               placeholder="Minimum"
               value={newPost.expMin === -1 ? "" : newPost.expMin}
               onChange={(e) =>
                 setNewPost((post) => {
+                  checkSize("exp");
                   return { ...post, expMin: +e.target.value };
                 })
               }
             />
             <input
+              className={errorOnSave.exp ? "border-2 border-alert " : ""}
               placeholder="Maximum"
               value={newPost.expMax === -1 ? "" : newPost.expMax}
               onChange={(e) =>
                 setNewPost((post) => {
+                  checkSize("exp");
+
                   return { ...post, expMax: +e.target.value };
                 })
               }
             />
           </Wrapper>
           <Label>Salary</Label>
+          {errorOnSave.sal && (
+            <p className="text-alert">Full all the required fields</p>
+          )}
           <Wrapper className={"gap-5"}>
             <input
+              className={errorOnSave.sal ? "border-2 border-alert " : ""}
               placeholder="Minimum"
               value={newPost.salaryMin === -1 ? "" : newPost.salaryMin}
               onChange={(e) =>
                 setNewPost((post) => {
+                  checkSize("sal");
                   return { ...post, salaryMin: +e.target.value };
                 })
               }
             />
             <input
+              className={errorOnSave.sal ? "border-2 border-alert " : ""}
               placeholder="Maximum"
-              value={newPost.salaryMax === -1 ? "" : newPost.salaryMin}
+              value={newPost.salaryMax === -1 ? "" : newPost.salaryMax}
               onChange={(e) =>
                 setNewPost((post) => {
+                  checkSize("sal");
                   return { ...post, salaryMax: +e.target.value };
                 })
               }

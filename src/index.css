@@ -1,9 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins");
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap"); */
 
 @layer base {
   * {
@@ -17,7 +17,7 @@
     @apply text-base leading-6;
   }
   h4 {
-    @apply text-sm text-black  inline;
+    @apply text-sm text-black font-bold  inline;
   }
   input {
     @apply w-full placeholder:font-normal box-border border rounded text-sm mx-0 my-2 px-5 py-3 border-solid border-[#ccc];

@@ -35,3 +35,8 @@ export type ErrorProps = {
   companyName: boolean;
   industry: boolean;
 };
+
+export type ErrorOnSaveProps = {
+  exp: boolean;
+  sal: boolean;
+};

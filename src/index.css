@@ -28,11 +28,6 @@
   p {
     @apply text-grey text-sm  whitespace-nowrap;
   }
-
-  /* input::placeholder {
-    @apply text-grey text-sm;
-    font-family: "Poppins";
-  } */
 }
 
 @layer components {

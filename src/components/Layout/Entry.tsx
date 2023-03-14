@@ -6,7 +6,10 @@ function Entry({ job }: SelectProps) {
   return (
     <div className="w-full p-4 justify-self-center rounded-lg	bg-[#fff]">
       <div className="flex gap-2">
-        <img src="https://www.freepnglogos.com/uploads/netflix-logo-app-png-16.png" />
+        <img
+          src="https://www.freepnglogos.com/uploads/netflix-logo-app-png-16.png"
+          alt={job.companyName}
+        />
         <div>
           <h2>{job.title}</h2>
           <h3 className="font-medium">
